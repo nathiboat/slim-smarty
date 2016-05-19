@@ -1,0 +1,11 @@
+{
+    "require": {
+        "slim/slim": "^3.4",
+        "mathmarques/Smarty-View": "^1.1"
+    },
+    "autoload": {
+      "par-4":{
+        "App\\": "app"
+      }
+    }
+}

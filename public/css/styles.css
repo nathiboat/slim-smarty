@@ -1,0 +1,54 @@
+body{
+	background-color: #ccc;
+}
+nav{
+	background-color: black;
+	color: white;
+}
+#logo{
+	margin: 10px 0 ;
+}
+#logo img{
+	width: 200px;
+}
+.main{
+	background-image: url('../img/bg.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover; 
+}
+.offer h1{
+	font-size: 5em;
+    font-weight: 800;
+}
+.col.center{
+  margin-top: auto;
+  margin-bottom: auto;
+  margin:0;
+}
+
+ /*==========  Non-Mobile First Method  ==========*/
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+   
+ }
+
+ /* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+
+    }
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+        
+}
