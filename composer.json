@@ -4,7 +4,7 @@
         "mathmarques/Smarty-View": "^1.1"
     },
     "autoload": {
-      "par-4":{
+      "psr-4":{
         "App\\": "app"
       }
     }
