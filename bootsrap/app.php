@@ -7,10 +7,24 @@ require __DIR__.'/../vendor/autoload.php';
 $app = new \Slim\App([
     'settings' => [
         'displayErrorDetails' => true,
+        'db' => [
+          'driver' => 'mysql',
+          'host' => 'localhost',
+          'database' => 'website',
+          'username' => 'root',
+          'password' => '',
+          'collation' => 'utf8_unicode_ci',
+          'prefix' => '',
+        ]
     ],
+
 ]);
 // Fetch DI Container
 $container = $app->getContainer();
+
+$capsule = new \Illuminate\Database\Capsule\Manager($container['settings']['db']);
+$capsule->setAsGlobal();
+$capsule->bootEloquent();
 
 // Register Smarty View helper
 $container['view'] = function ($container) {

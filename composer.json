@@ -1,7 +1,8 @@
 {
     "require": {
         "slim/slim": "^3.4",
-        "mathmarques/Smarty-View": "^1.1"
+        "mathmarques/Smarty-View": "^1.1",
+        "illuminate/database": "^5.2"
     },
     "autoload": {
       "psr-4":{
