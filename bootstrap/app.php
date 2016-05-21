@@ -8,23 +8,29 @@ $app = new \Slim\App([
     'settings' => [
         'displayErrorDetails' => true,
         'db' => [
-          'driver' => 'mysql',
-          'host' => 'localhost',
-          'database' => 'website',
-          'username' => 'root',
-          'password' => '',
-          'collation' => 'utf8_unicode_ci',
-          'prefix' => '',
+            'driver' => 'mysql',
+            'host' => 'localhost',
+            'database' => 'website',
+            'username' => 'root',
+            'password' => 'root',
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
         ]
     ],
-
 ]);
+
 // Fetch DI Container
 $container = $app->getContainer();
+$capsule = new \Illuminate\Database\Capsule\Manager;
 
-$capsule = new \Illuminate\Database\Capsule\Manager($container['settings']['db']);
+$capsule->addConnection($container['settings']['db']);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
+
+$container['db'] = function ($container) use ($capsule) {
+    return $capsule;
+};
 
 // Register Smarty View helper
 $container['view'] = function ($container) {
@@ -43,6 +49,9 @@ $container['view'] = function ($container) {
 //Controllers
 $container['HomeController'] = function ($container) {
     return new \App\Controllers\HomeController($container);
+};
+$container['AuthController'] = function ($container) {
+    return new \App\Controllers\Auth\AuthController($container);
 };
 
 

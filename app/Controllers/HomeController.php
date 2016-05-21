@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+
 use Slim\Views\Smarty as View;
 
 class HomeController extends Controller
