@@ -1,15 +1,30 @@
 <?php
 
+session_start();
+
 require __DIR__.'/../vendor/autoload.php';
 
 $app = new \Slim\App([
     'settings' => [
         'displayErrorDetails' => true,
+        'db' => [
+          'driver' => 'mysql',
+          'host' => 'localhost',
+          'database' => 'website',
+          'username' => 'root',
+          'password' => '',
+          'collation' => 'utf8_unicode_ci',
+          'prefix' => '',
+        ]
     ],
-]);
 
+]);
 // Fetch DI Container
 $container = $app->getContainer();
+
+$capsule = new \Illuminate\Database\Capsule\Manager($container['settings']['db']);
+$capsule->setAsGlobal();
+$capsule->bootEloquent();
 
 // Register Smarty View helper
 $container['view'] = function ($container) {
@@ -24,5 +39,11 @@ $container['view'] = function ($container) {
     $view->registerPlugin('function', 'base_url', [$smartyPlugins, 'baseUrl']);
     return $view;
 };
+
+//Controllers
+$container['HomeController'] = function ($container) {
+    return new \App\Controllers\HomeController($container);
+};
+
 
 require __DIR__.'/../app/routes.php';
