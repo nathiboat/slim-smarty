@@ -12,9 +12,9 @@
             Sign UP
             {foreach from=$errors key=k item=v}
               <p>{$k}: {$v}</p>
-              {foreach from=$v key=h item=m}
+              {foreach from=$v item=m}
               <p>
-                {$h} : {$m}
+                 {$m}
               </p>
               {/foreach}
             {/foreach}
