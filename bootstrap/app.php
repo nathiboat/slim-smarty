@@ -46,6 +46,10 @@ $container['view'] = function ($container) {
     return $view;
 };
 
+$container['validator'] = function ($container) {
+    return new \App\Validation\Validator;
+};
+
 //Controllers
 $container['HomeController'] = function ($container) {
     return new \App\Controllers\HomeController($container);
@@ -54,5 +58,5 @@ $container['AuthController'] = function ($container) {
     return new \App\Controllers\Auth\AuthController($container);
 };
 
-
+$app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
 require __DIR__.'/../app/routes.php';

@@ -8,13 +8,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="{base_url}">Project name</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Dashboard</a></li>
             <li><a href="#">Settings</a></li>
-            <li><a href="#">Sign In</a></li>
+            <li><a href="{path_for name="auth.signup"}">Sign In</a></li>
             <li><a href="#">Sign Out</a></li>
           </ul>
           <form class="navbar-form navbar-right">
