@@ -10,14 +10,17 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             Sign UP
-            {foreach from=$errors key=k item=v}
-              <p>{$k}: {$v}</p>
-              {foreach from=$v item=m}
-              <p>
-                 {$m}
-              </p>
+
+            {if !empty($errors)}
+              {foreach from=$errors key=k item=v}
+                <p>{$k}</p>
+                {foreach from=$v key=n item=m}
+                  <p>
+                    {$m}
+                  </p>
+                {/foreach}
               {/foreach}
-            {/foreach}
+            {/if}
 
           </div>
           <div class="panel-body">

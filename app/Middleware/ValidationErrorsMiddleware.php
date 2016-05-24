@@ -8,8 +8,12 @@ namespace App\Middleware;
       {
       $smarty = $this->container->view->getSmarty();
 
-      $smarty->assign(errors, $_SESSION['errors']);
-      unset($_SESSION['errors']);
+
+      if (!empty($_SESSION['errors'])) {
+        $smarty->assign('errors', $_SESSION['errors']);
+        unset($_SESSION['errors']);
+      }
+
 
       $response = $next($request, $response);
       return $response;
