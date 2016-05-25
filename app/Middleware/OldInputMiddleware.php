@@ -8,8 +8,8 @@ namespace App\Middleware;
     {
         $smarty = $this->container->view->getSmarty();
 
-        $smarty->assign('old', $SESSION['old']);
-        $_SESSION['old'] = $request->getPArams();
+        $smarty->assign('old', $_SESSION['old']);
+        $_SESSION['old'] = $request->getParams();
 
         $response = $next($request, $response);
         return $response;

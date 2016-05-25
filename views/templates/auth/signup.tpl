@@ -10,14 +10,12 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             Sign UP
-
-
           </div>
           <div class="panel-body">
             <form action="{path_for name="auth.signup"}" method="post">
               <div class="form-group {if !empty($errors.email)}has-error{/if}">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="you@email.com" class="form-control" >
+                <input type="email" name="email" id="email" placeholder="you@email.com" class="form-control" value="{if !empty($old.email)}{$old.email}{/if}">
                 {if !empty($errors.email)}
                   {foreach from=$errors.email item=value}
                     <span class="help-block">{$value}</span>
@@ -26,7 +24,7 @@
               </div>
               <div class="form-group {if !empty($errors.name)}has-error{/if}">
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name" placeholder="you@name.com" class="form-control">
+                <input type="text" name="name" id="name" placeholder="you@name.com" class="form-control" value="{if !empty($old.name)}{$old.name}{/if}">
                 {if !empty($errors.name)}
                   {foreach from=$errors.name item=value}
                     <span class="help-block">{$value}</span>
@@ -36,7 +34,7 @@
               <div class="form-group {if !empty($errors.password)}has-error{/if}">
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" placeholder="" class="form-control">
-                {if !empty($errors.name)}
+                {if !empty($errors.password)}
                   {foreach from=$errors.password item=value}
                     <span class="help-block">{$value}</span>
                   {/foreach}
