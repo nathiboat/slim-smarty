@@ -1,5 +1,5 @@
 <?php
-
+use Respect\Validation\Validator as v;
 session_start();
 
 require __DIR__.'/../vendor/autoload.php';
@@ -12,7 +12,7 @@ $app = new \Slim\App([
             'host' => 'localhost',
             'database' => 'website',
             'username' => 'root',
-            'password' => 'root',
+            'password' => '',
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
@@ -60,5 +60,7 @@ $container['AuthController'] = function ($container) {
 
 $app->add(new \App\Middleware\ValidationErrorsMiddleware($container));
 $app->add(new \App\Middleware\OldInputMiddleware($container));
+
+v::with('App\\Validation\\Rules\\');
 
 require __DIR__.'/../app/routes.php';
