@@ -20,7 +20,9 @@
   </head>
   <body>
     {include file="templates/partials/nav.tpl"}
-
+    <div class="container">
+      {include file="templates/partials/flash.tpl"}
+    </div>
     {block name=content}{/block}
 
 

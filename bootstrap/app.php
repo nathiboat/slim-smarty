@@ -1,5 +1,6 @@
 <?php
 use Respect\Validation\Validator as v;
+
 session_start();
 
 require __DIR__.'/../vendor/autoload.php';
@@ -12,7 +13,7 @@ $app = new \Slim\App([
             'host' => 'localhost',
             'database' => 'website',
             'username' => 'root',
-            'password' => '',
+            'password' => 'root',
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
@@ -31,6 +32,9 @@ $capsule->bootEloquent();
 $container['db'] = function ($container) use ($capsule) {
     return $capsule;
 };
+$container['flash'] = function () {
+    return new \Slim\Flash\Messages();
+};
 
 // Register Smarty View helper
 $container['view'] = function ($container) {
@@ -43,6 +47,10 @@ $container['view'] = function ($container) {
     $smartyPlugins = new \Slim\Views\SmartyPlugins($container['router'], $container['request']->getUri());
     $view->registerPlugin('function', 'path_for', [$smartyPlugins, 'pathFor']);
     $view->registerPlugin('function', 'base_url', [$smartyPlugins, 'baseUrl']);
+
+    $view->getSmarty()->assign('flash',$container->flash);
+
+
     return $view;
 };
 
